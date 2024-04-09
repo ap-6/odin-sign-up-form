@@ -1,5 +1,16 @@
 :root{
-    --form-padding: 20px;
+    --form-padding-hor: 40px;
+    --form-padding-vert: 40px;
+}
+
+body {
+    font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
+    font-weight: normal;
+}
+
+label {
+    font-size: small;
+    letter-spacing: 1px;
 }
 
 #master-container {
@@ -10,7 +21,7 @@
 #right-half {
     display: flex;
     flex-direction: column;
-    background-color: grey;
+    background-color: rgb(238, 238, 238);
     flex: auto;
     box-sizing: border-box;
 }
@@ -22,18 +33,12 @@
     height: auto;
 }
 
-.user-input {
-    background-color: white;
-    padding: var(--form-padding);
-}
-
 #block-upper {
-    flex: 1 1 auto;
+    flex: 2 1 auto;
 }
 
 #block-form {
     flex: 1 1 auto;
-
 }
 
 .input-field {
@@ -42,10 +47,67 @@
 }
 
 .submit-field {
-    padding: var(--form-padding);
+    padding: var(--form-padding-vert) var(--form-padding-hor);
+}
+
+.submit-field > button {
+    background-color: #596D48;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 6px 5px 1px rgba(0,0,0,0.1); 
+    box-shadow: 4px 6px 5px 1px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    border: none;
+}
+
+.submit-field > button:hover {
+    background-color: #4c5c3d;
+}
+
+.submit-field > button:active {
+    outline: 2px solid #7e9966;
+    background-color: #4c5c3d;
 }
 
 .form-row {
     display: flex;
     flex-direction: row;
+    gap: 20px;
 }
+
+.user-input {
+    background-color: white;
+    padding: var(--form-padding-vert) var(--form-padding-hor);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    -webkit-box-shadow: 3px 2px 5px 5px rgba(0,0,0,0.1); 
+    box-shadow: 3px 2px 5px 5px rgba(0,0,0,0.1);
+}
+
+.fake-link {
+    color: #596D48;
+    text-decoration: underline;
+}
+
+input,
+input:placeholder-shown {
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #E5E7EB;
+    background-color: rgb(253, 253, 253);
+}
+
+input:focus {
+    outline: 1px solid #5e76ff;
+    -webkit-box-shadow: 4px 6px 5px 1px rgba(0,0,0,0.1); 
+    box-shadow: 4px 6px 5px 1px rgba(0,0,0,0.1);
+    background-color: rgb(255, 255, 255);
+}
+
+input:invalid {
+    outline: 1px solid #df0000;
+    background-color: #ffe7e7;
+}
+
