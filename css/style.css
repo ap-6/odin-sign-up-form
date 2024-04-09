@@ -106,8 +106,12 @@ input:focus {
     background-color: rgb(255, 255, 255);
 }
 
-input:invalid {
+.input-invalid {
     outline: 1px solid #df0000;
     background-color: #ffe7e7;
 }
 
+.error {
+    color: #df0000;
+    font-size: smaller;
+}
