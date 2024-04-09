@@ -1,0 +1,51 @@
+:root{
+    --form-padding: 20px;
+}
+
+#master-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#right-half {
+    display: flex;
+    flex-direction: column;
+    background-color: grey;
+    flex: auto;
+    box-sizing: border-box;
+}
+
+.bg-img {
+    max-height: 100vh;
+    width: 100%;
+    width: auto;
+    height: auto;
+}
+
+.user-input {
+    background-color: white;
+    padding: var(--form-padding);
+}
+
+#block-upper {
+    flex: 1 1 auto;
+}
+
+#block-form {
+    flex: 1 1 auto;
+
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit-field {
+    padding: var(--form-padding);
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+}
