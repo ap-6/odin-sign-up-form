@@ -2,39 +2,58 @@ function checkPasswords (passwordInit, passwordConfirm,
                          passwordInitError, passwordConfirmError) {
 
     passwordInit.addEventListener("input", function () {
-        if (passwordInit.value.length < 8) {
-            passwordInitError.textContent = "Password must be 8 characters or more";
-            applyCssClass("input-invalid", passwordInit);
-        }
-        else {
-            passwordInitError.textContent = "";
-            removeCssClass("input-invalid", passwordInit);
-        }
-
-        //password matching
-        if (passwordConfirm.value !== "" && 
-            passwordInit.value !== passwordConfirm.value) {
-            passwordConfirmError.textContent = "Passwords do not match";
-            applyCssClass("input-invalid", passwordInit, passwordConfirm);
-            
-        }
-        else if (passwordInit.value === passwordConfirm.value) {
-            passwordConfirmError.textContent = "";
-            removeCssClass("input-invalid", passwordInit, passwordConfirm);
-        }
-
+        updatePasswordErrorMsg(passwordInit, passwordConfirm, 
+                               passwordInitError, passwordConfirmError);
+        updatePasswordErrorStyle(passwordInit, passwordConfirm);
     });
 
     passwordConfirm.addEventListener("input", function () {
-        if (passwordInit.value !== passwordConfirm.value) {
-            passwordConfirmError.textContent = "Passwords do not match";
-            applyCssClass("input-invalid", passwordInit, passwordConfirm);
-        }
-        else {
-            passwordConfirmError.textContent = "";
-            removeCssClass("input-invalid", passwordInit, passwordConfirm);
-        }
+        updatePasswordErrorMsg(passwordInit, passwordConfirm, 
+                               passwordInitError, passwordConfirmError);
+        updatePasswordErrorStyle(passwordInit, passwordConfirm);
     });
+}
+
+function updatePasswordErrorMsg(passwordInit, passwordConfirm, 
+                                passwordInitError, passwordConfirmError) {
+    let isPasswordLong = passwordInit.value.length > 7;
+    let arePasswordsEqual = passwordInit.value === passwordConfirm.value;
+    let isPasswordConfirmEmpty = passwordConfirm.value === "";
+
+    //password length
+    if (!isPasswordLong) {
+        passwordInitError.textContent = "Password must be 8 characters or more";
+    }
+    else {
+        passwordInitError.textContent = "";
+    }
+    //password matching
+    if (!isPasswordConfirmEmpty && !arePasswordsEqual) {
+        passwordConfirmError.textContent = "Passwords do not match";    
+    }
+    else if (arePasswordsEqual) {
+        passwordConfirmError.textContent = "";
+    }
+}
+
+function updatePasswordErrorStyle(passwordInit, passwordConfirm) {
+    let isPasswordLong = passwordInit.value.length > 7;
+    let arePasswordsEqual = passwordInit.value === passwordConfirm.value;
+    let isPasswordConfirmEmpty = passwordConfirm.value === "";
+    
+    if (!isPasswordLong && isPasswordConfirmEmpty) {
+        applyCssClass("input-invalid", passwordInit);
+    }
+    else if (isPasswordLong && isPasswordConfirmEmpty) {
+        removeCssClass("input-invalid", passwordInit);
+    }
+    
+    if (!isPasswordConfirmEmpty && !arePasswordsEqual) { //unequal and confirm filled
+        applyCssClass("input-invalid", passwordInit, passwordConfirm); 
+    }
+    else if (arePasswordsEqual && isPasswordLong) {
+        removeCssClass("input-invalid", passwordInit, passwordConfirm);
+    }
 }
 
 function applyCssClass(className, ...htmlElements) {
@@ -49,17 +68,21 @@ function removeCssClass(className, ...htmlElements) {
     });
 }
 
-function checkSubmit() {
+function checkSubmit(myForm, passwordInit, passwordConfirm) {
     myForm.addEventListener("submit", function(event){
         event.preventDefault();
 
-        if (passwordInit.value === passwordConfirm.value) {
+        if (isFormValid(passwordInit, passwordConfirm)) {
             this.submit();
         }
-        else {
-            alert("Passwords don't match");
-        }
-    })
+    });
+}
+
+function isFormValid(passwordInit, passwordConfirm) {
+    let isPasswordLong = passwordInit.value.length > 7;
+    let isPasswordMatch = passwordInit.value === passwordConfirm.value;
+
+    return isPasswordLong && isPasswordMatch;
 }
 
 function initializeValidation() {
