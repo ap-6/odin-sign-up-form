@@ -78,7 +78,7 @@ label {
 
 .user-input {
     background-color: white;
-    padding: 50px var(--form-padding-hor) 20px;
+    padding: 30px var(--form-padding-hor) 20px;
     display: flex;
     flex-direction: column;
     -webkit-box-shadow: 3px 2px 5px 5px rgba(0,0,0,0.1); 
