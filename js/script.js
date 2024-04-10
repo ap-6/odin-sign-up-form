@@ -85,14 +85,31 @@ function isFormValid(passwordInit, passwordConfirm) {
     return isPasswordLong && isPasswordMatch;
 }
 
+function checkEmail(email){
+    const emailRegex = /^[a-zA-Z0-9\.\_\-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+
+    email.addEventListener("blur", function() {
+        let emailInput = email.value;
+        
+        if(!emailRegex.test(emailInput)) {
+            applyCssClass("input-invalid", email);
+        }
+        else {
+            removeCssClass("input-invalid", email);
+        }
+    })
+}
+
 function initializeValidation() {
     let passwordInit = document.querySelector("#password");
     let passwordConfirm = document.querySelector("#password-confirm");
     let passwordInitError = document.querySelector("#password + .error");
     let passwordConfirmError = document.querySelector("#password-confirm + .error");
+    let email = document.querySelector("#email");
     let myForm = document.querySelector("#create-account-form");
 
     checkPasswords(passwordInit, passwordConfirm, passwordInitError, passwordConfirmError);
+    checkEmail(email);
     checkSubmit(myForm, passwordInit, passwordConfirm);
 }
 
