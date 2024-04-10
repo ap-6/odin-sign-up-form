@@ -78,7 +78,7 @@ label {
 
 .user-input {
     background-color: white;
-    padding: var(--form-padding-vert) var(--form-padding-hor);
+    padding: 50px var(--form-padding-hor) 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -91,12 +91,12 @@ label {
     text-decoration: underline;
 }
 
-input,
-input:placeholder-shown {
+input {
     border-radius: 5px;
     padding: 5px;
     border: 1px solid #E5E7EB;
     background-color: rgb(253, 253, 253);
+    margin: 5px 0px;
 }
 
 input:focus {
@@ -114,4 +114,8 @@ input:focus {
 .error {
     color: #df0000;
     font-size: smaller;
+}
+
+.password-field > div {
+    height: 30px;
 }

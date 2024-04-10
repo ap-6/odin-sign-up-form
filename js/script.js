@@ -1,29 +1,26 @@
-function passwordCheck () {
-    let passwordInit = document.querySelector("#password");
-    let passwordConfirm = document.querySelector("#password-confirm");
-    let passwordInitError = document.querySelector("#password + .error");
-    let passwordConfirmError = document.querySelector("#password-confirm + .error");
-    let myForm = document.querySelector("#create-account-form")
+function checkPasswords (passwordInit, passwordConfirm, 
+                         passwordInitError, passwordConfirmError) {
 
     passwordInit.addEventListener("input", function () {
         if (passwordInit.value.length < 8) {
             passwordInitError.textContent = "Password must be 8 characters or more";
-            passwordInit.classList.add("input-invalid");
+            applyCssClass("input-invalid", passwordInit);
         }
         else {
             passwordInitError.textContent = "";
-            passwordInit.classList.remove("input-invalid");
+            removeCssClass("input-invalid", passwordInit);
         }
 
         //password matching
         if (passwordConfirm.value !== "" && 
             passwordInit.value !== passwordConfirm.value) {
             passwordConfirmError.textContent = "Passwords do not match";
-            showPasswordInvalid(passwordInit, passwordConfirm)
+            applyCssClass("input-invalid", passwordInit, passwordConfirm);
+            
         }
         else if (passwordInit.value === passwordConfirm.value) {
             passwordConfirmError.textContent = "";
-            showPasswordValid(passwordInit, passwordConfirm);
+            removeCssClass("input-invalid", passwordInit, passwordConfirm);
         }
 
     });
@@ -31,14 +28,28 @@ function passwordCheck () {
     passwordConfirm.addEventListener("input", function () {
         if (passwordInit.value !== passwordConfirm.value) {
             passwordConfirmError.textContent = "Passwords do not match";
-            showPasswordInvalid(passwordInit, passwordConfirm);
+            applyCssClass("input-invalid", passwordInit, passwordConfirm);
         }
         else {
             passwordConfirmError.textContent = "";
-            showPasswordValid(passwordInit, passwordConfirm);
+            removeCssClass("input-invalid", passwordInit, passwordConfirm);
         }
     });
+}
 
+function applyCssClass(className, ...htmlElements) {
+    htmlElements.forEach(htmlElement => {
+        htmlElement.classList.add(className);
+    });
+}
+
+function removeCssClass(className, ...htmlElements) {
+    htmlElements.forEach(htmlElement => {
+        htmlElement.classList.remove(className);
+    });
+}
+
+function checkSubmit() {
     myForm.addEventListener("submit", function(event){
         event.preventDefault();
 
@@ -51,14 +62,15 @@ function passwordCheck () {
     })
 }
 
-function showPasswordInvalid(passwordInit, passwordConfirm) {
-    passwordInit.classList.add("input-invalid");
-    passwordConfirm.classList.add("input-invalid");
+function initializeValidation() {
+    let passwordInit = document.querySelector("#password");
+    let passwordConfirm = document.querySelector("#password-confirm");
+    let passwordInitError = document.querySelector("#password + .error");
+    let passwordConfirmError = document.querySelector("#password-confirm + .error");
+    let myForm = document.querySelector("#create-account-form");
+
+    checkPasswords(passwordInit, passwordConfirm, passwordInitError, passwordConfirmError);
+    checkSubmit(myForm, passwordInit, passwordConfirm);
 }
 
-function showPasswordValid(passwordInit, passwordConfirm) {
-    passwordInit.classList.remove("input-invalid");
-    passwordConfirm.classList.remove("input-invalid");
-}
-
-passwordCheck();
+initializeValidation();
