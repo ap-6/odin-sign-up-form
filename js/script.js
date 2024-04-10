@@ -85,17 +85,19 @@ function isFormValid(passwordInit, passwordConfirm) {
     return isPasswordLong && isPasswordMatch;
 }
 
-function checkEmail(email){
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+function checkEmail(emailInput, emailInputError){
+    const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
 
     email.addEventListener("blur", function() {
-        let emailInput = email.value;
         
-        if(!emailRegex.test(emailInput)) {
+        if(!emailRegex.test(emailInput.value)) {
             applyCssClass("input-invalid", email);
+            emailInputError.textContent = "Invalid email";
+
         }
         else {
             removeCssClass("input-invalid", email);
+            emailInputError.textContent = "";
         }
     })
 }
@@ -105,11 +107,12 @@ function initializeValidation() {
     let passwordConfirm = document.querySelector("#password-confirm");
     let passwordInitError = document.querySelector("#password + .error");
     let passwordConfirmError = document.querySelector("#password-confirm + .error");
-    let email = document.querySelector("#email");
+    let emailInput = document.querySelector("#email");
+    let emailInputError = document.querySelector("#email + .error");
     let myForm = document.querySelector("#create-account-form");
 
     checkPasswords(passwordInit, passwordConfirm, passwordInitError, passwordConfirmError);
-    checkEmail(email);
+    checkEmail(emailInput, emailInputError);
     checkSubmit(myForm, passwordInit, passwordConfirm);
 }
 

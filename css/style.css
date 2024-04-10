@@ -81,9 +81,12 @@ label {
     padding: 50px var(--form-padding-hor) 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     -webkit-box-shadow: 3px 2px 5px 5px rgba(0,0,0,0.1); 
     box-shadow: 3px 2px 5px 5px rgba(0,0,0,0.1);
+}
+
+.name-row {
+    margin-bottom: 30px;
 }
 
 .fake-link {
@@ -96,7 +99,7 @@ input {
     padding: 5px;
     border: 1px solid #E5E7EB;
     background-color: rgb(253, 253, 253);
-    margin: 5px 0px;
+    margin: 0px 0px;
 }
 
 input:focus {
@@ -114,8 +117,7 @@ input:focus {
 .error {
     color: #df0000;
     font-size: smaller;
+    height: 25px;
+    margin-top: 5px;
 }
 
-.password-field > div {
-    height: 30px;
-}
