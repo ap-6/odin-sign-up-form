@@ -47,13 +47,6 @@ label {
     height: auto;
 }
 
-#block-upper {
-
-}
-
-#block-form {
-
-}
 
 .input-field {
     display: flex;
@@ -141,7 +134,21 @@ input:focus {
     font-size: 50px;
     text-align: center;
     padding: 10px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
+
+.logo{
+    max-height: 100%;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    margin: 0px;
+}
+
 
 .credit {
     color: white;
