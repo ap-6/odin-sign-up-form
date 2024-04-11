@@ -43,16 +43,20 @@ function updatePasswordErrorStyle(passwordInit, passwordConfirm) {
     
     if (!isPasswordLong && isPasswordConfirmEmpty) {
         applyCssClass("input-invalid", passwordInit);
+        applyCssClass("input-invalid:focus", passwordInit);
     }
     else if (isPasswordLong && isPasswordConfirmEmpty) {
         removeCssClass("input-invalid", passwordInit);
+        removeCssClass("input-invalid:focus", passwordInit);
     }
     
     if (!isPasswordConfirmEmpty && !arePasswordsEqual) { //unequal and confirm filled
         applyCssClass("input-invalid", passwordInit, passwordConfirm); 
+        applyCssClass("input-invalid:focus", passwordInit, passwordConfirm); 
     }
     else if (arePasswordsEqual && isPasswordLong) {
         removeCssClass("input-invalid", passwordInit, passwordConfirm);
+        removeCssClass("input-invalid:focus", passwordInit, passwordConfirm);
     }
 }
 
@@ -88,15 +92,16 @@ function isFormValid(passwordInit, passwordConfirm) {
 function checkEmail(emailInput, emailInputError){
     const emailRegex = /^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
 
-    email.addEventListener("blur", function() {
+    email.addEventListener("input", function() {
         
         if(!emailRegex.test(emailInput.value)) {
             applyCssClass("input-invalid", email);
+            applyCssClass("input-invalid:focus", email);
             emailInputError.textContent = "Invalid email";
-
         }
         else {
             removeCssClass("input-invalid", email);
+            removeCssClass("input-invalid:focus", email);
             emailInputError.textContent = "";
         }
     })
