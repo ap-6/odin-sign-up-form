@@ -1,6 +1,5 @@
 :root{
     --form-padding-hor: 40px;
-    --form-padding-vert: 40px;
 }
 
 @font-face {
@@ -25,8 +24,7 @@ label {
 
 #master-container {
     display: flex;
-    flex-direction: row;
-    
+    flex-direction: row; 
 }
 
 #right-half {
@@ -56,14 +54,13 @@ label {
     height: auto;
 }
 
-
 .input-field {
     display: flex;
     flex-direction: column;
 }
 
 .submit-field {
-    padding: var(--form-padding-vert) var(--form-padding-hor);
+    padding: 40px var(--form-padding-hor, 40px);
 }
 
 .submit-field > button {
@@ -90,11 +87,13 @@ label {
     display: flex;
     flex-direction: row;
     gap: 20px;
+
+
 }
 
 .user-input {
     background-color: white;
-    padding: 30px var(--form-padding-hor) 20px;
+    padding: 30px var(--form-padding-hor, 40px) 20px;
     display: flex;
     flex-direction: column;
     -webkit-box-shadow: 3px 2px 5px 5px rgba(0,0,0,0.1); 
@@ -116,6 +115,7 @@ input {
     border: 1px solid #E5E7EB;
     background-color: rgb(253, 253, 253);
     margin: 0px 0px;
+
 }
 
 input:focus {
@@ -178,7 +178,7 @@ a {
 }
 
 .block-upper {
-    padding: 0px 40px;
+    padding: 0px var(--form-padding-hor, 40px);
     margin-bottom: 30px;
     font-size: 50px;
     font-weight: 300;
